@@ -18,11 +18,11 @@ return(
 <i className={this.state.clicked ? "fa fa-times": "fa fa-bars"}></i>
 </div>
 
-<ul className="nav-menu">
+<ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
 {MenuItems.map((item,index)=>{
 return(
 <li key={index}>
-<a className="nav-links" href="/"><i className="{item.icon}"></i>{item.title}</a>
+<a className="nav-links" href="/"><i className={item.icon}></i>{item.title}</a>
 </li>
 )
 }
