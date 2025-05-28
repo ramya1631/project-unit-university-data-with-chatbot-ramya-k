@@ -1,0 +1,28 @@
+
+/* Page content styling */
+.students-page {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+  color: #222;
+}
+
+.students-page p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+.students-page {
+  animation: fadeIn 1s ease-in;
+}
+.page, .students-page {
+  padding-top: 100px; /* Adjust based on navbar height */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+  color: #222;
+  z-index: 2;
+  position: relative;
+}
