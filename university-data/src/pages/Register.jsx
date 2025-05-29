@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "../components/InputField";
-import "./register.css";
+import "./Register.css";
 
 function Register() {
   // State for form data
