@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 import Footer from "./components/Footer";
@@ -18,6 +18,7 @@ function App() {
         <Navbar />
 
         <main>
+            <HashRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -25,6 +26,7 @@ function App() {
             <Route path="/uni" element={<UniversityData />} />
             <Route path="/register" element={<Register />} />
           </Routes>
+          </HashRouter>
         </main>
 
         <Footer />

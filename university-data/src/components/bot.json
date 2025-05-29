@@ -18,7 +18,12 @@
   "internships": "Internship listings are available through the Career Portal. Don’t forget to attend our Career Fairs!",
   "events": "Upcoming events include Hackathons, Career Week, Cultural Fest, and Alumni Talks.",
   "contact": "You can contact us at info@university.edu or call +1-800-123-4567.",
+  "contact admissions": "For admissions inquiries, email admissions@university.edu or call +1-800-111-2222.",
+  "contact support": "Need help? Reach our 24/7 support team at support@university.edu or use the Help Desk portal.",
+  "contact housing": "Questions about student housing? Email housing@university.edu or call +1-800-333-4444.",
+  "contact library": "Library services can be reached at library@university.edu.",
+  "faculty contact": "Faculty contact info is available on each department page. You can also email info@university.edu for help.",
+  "default": "Sorry, I didn't understand that. Can you please rephrase your question?",
   "bye": "Goodbye! 👋 Feel free to ask more questions any time.",
-  "thank you": "You're welcome! 😊 Let me know if you need anything else.",
-  "default": "Sorry, I didn't understand that. Can you please rephrase your question?"
+  "thank you": "You're welcome!  Let me know if you need anything else."
 }
