@@ -1,28 +1,92 @@
-
-/* Page content styling */
-.students-page {
-  padding: 2rem 1rem;
-  max-width: 800px;
-  margin: auto;
-  line-height: 1.6;
-  color: #222;
-}
-
-.students-page p {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-}
-.students-page {
-  animation: fadeIn 1s ease-in;
-}
-.page, .students-page {
-  padding-top: 100px; /* Adjust based on navbar height */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  max-width: 800px;
-  margin: auto;
-  line-height: 1.6;
-  color: #222;
-  z-index: 2;
+/* Hero Section */
+.students-hero {
   position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.students-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.students-hero__overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 12px;
+  color: white;
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.students-hero__overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.students-hero__overlay p {
+  font-size: 1.25rem;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-card {
+  animation: fadeIn 0.8s ease-in;
+}
+
+/* Page Layout */
+.page {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: auto;
+  color: #222;
+  position: relative;
+  z-index: 2;
+}
+
+.students-page h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* Grid Layout for Services */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Responsive Typography */
+@media screen and (max-width: 768px) {
+  .students-hero__overlay h1 {
+    font-size: 2rem;
+  }
+
+  .students-hero__overlay p {
+    font-size: 1rem;
+  }
+
+  .students-page h2 {
+    font-size: 1.5rem;
+  }
 }

@@ -1,5 +1,12 @@
+
 /* Container for image and overlay text */
-.cont {
+.content-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Container for image + overlay + text */
+.cont, .cont-mid {
   width: 100%;
   height: 100vh;
   position: relative;
@@ -7,49 +14,57 @@
 }
 
 /* Image fills the container */
-.cont img {
+.content-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Text overlay on image, centered */
+/* Dark overlay for contrast */
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* You can increase to 0.6 if needed */
+  z-index: 1;
+}
+
+/* Text overlay on image */
 .content-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 90%;
   max-width: 800px;
   padding: 1rem;
   text-align: center;
   color: white;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   z-index: 2;
 }
 
 .content-text h1 {
   font-size: 3rem;
   font-weight: 800;
-  /* Text clip effect */
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .content-text p {
   font-size: 1.3rem;
   margin: 0.5rem 0 2rem 0;
   color: white;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
 }
 
+/* Button styling */
 .content-text .show {
   text-decoration: none;
-  background:white;
+  background: white;
   padding: 1rem 2rem;
   border-radius: 6px;
   font-size: 1.1rem;
@@ -65,24 +80,18 @@
 
 /* Responsive */
 @media screen and (max-width: 555px) {
-  .content-text {
-    width: 90%;
-    max-width: 90%;
-    padding: 1rem;
-  }
-
   .content-text h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     padding: 0.5rem 0;
   }
 
   .content-text p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     padding: 0.5rem 0 1rem 0;
   }
 
   .content-text .show {
     padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }

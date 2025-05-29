@@ -1,43 +1,49 @@
+  import Content from "../components/Content";
+  import StudentImg from "../assets/img_2.png";
+  import ServiceItem from "../components/ServiceItem";
+  import "./Students.css";
 
-import Content from "../components/Content";
-import StudentImg from "../assets/img_2.png";
-import "./Students.css";  // new CSS for the page
+  const services = [
+    {
+      title: "Academic Advising",
+      description: "One-on-one support for coursework planning, choosing majors, and setting goals."
+    },
+    {
+      title: "Career Counseling",
+      description: "Resume reviews, mock interviews, and networking events to prepare for your career."
+    },
+    {
+      title: "IT Help Desk",
+      description: "24/7 support for tech issues like campus email, Blackboard, and online tools."
+    }
+  ];
 
-function Students() {
-  return (
-    <>
+  function Students() {
+    return (
+      <>
+        <div className="students-hero">
+          <img src={StudentImg} alt="Students Background" className="students-hero__image" />
+          <div className="students-hero__overlay">
+            <h1>Students Desk</h1>
+            <p>Explore our range of student services designed to support your academic journey and career goals.</p>
+          </div>
+        </div>
 
-      <Content
-        contentImg={StudentImg}
-        cName="cont-mid"
-        title="Students Desk"
-        text=""              // keep blank so it doesn’t render a <p>
-        btnClass="hide"
-      />
+        <div className="page students-page">
+          <h2>Student Support Services</h2>
+          <div className="services-grid">
+            {services.map((service, index) => (
+              <ServiceItem
+                key={index}
+                title={service.title}
+                description={service.description}
+                className="fade-in-card"
+              />
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  }
 
-
-      <div className="page students-page">
-        <p>
-          At launch code Student Desk, we’re dedicated to supporting you every step of your academic journey.
-          Our team of academic advisors is available for one-on-one appointments to help you plan your coursework,
-          choose your major, and set milestones for graduation.
-        </p>
-
-        <p>
-          Beyond academics, we offer career counseling services—including resume reviews, mock interviews,
-          and industry networking events—to prepare you for life after graduation. Our online portal
-          features internship listings and alumni connections in over 50 fields.
-        </p>
-
-        <p>
-          Need technical help? Our 24/7 IT support desk can assist with everything from setting up your campus email
-          to troubleshooting Blackboard uploads. We also host weekly “Tech Tips” webinars to keep you up to date
-          on the latest productivity tools.
-        </p>
-
-      </div>
-    </>
-  );
-}
-
-export default Students;
+  export default Students;

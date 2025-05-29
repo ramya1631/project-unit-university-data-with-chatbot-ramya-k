@@ -1,7 +1,9 @@
 import { useState } from "react";
+import InputField from "../components/InputField";
 import "./register.css";
 
 function Register() {
+  // State for form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -9,18 +11,36 @@ function Register() {
     password: "",
   });
 
+  // State for success message after submission
   const [successMessage, setSuccessMessage] = useState("");
 
+  // State to show password validation error
+  const [passwordError, setPasswordError] = useState("");
+
+  // Handle input field changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Check password validity (basic example)
+    if (name === "password") {
+      if (value.length < 6) {
+        setPasswordError("Password must be at least 6 characters");
+      } else {
+        setPasswordError(""); // Clear error
+      }
+    }
+
+    setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Registration data:", formData);
+    // Prevent submission if password error
+    if (passwordError) return;
 
-    // Show success message
+    // Simulate successful submission
     setSuccessMessage(`Welcome, ${formData.name}! Registration complete.`);
 
     // Clear form fields
@@ -31,7 +51,7 @@ function Register() {
       password: "",
     });
 
-    // Optionally hide the message after some time
+    // Clear success message after 5 seconds
     setTimeout(() => setSuccessMessage(""), 5000);
   };
 
@@ -40,44 +60,46 @@ function Register() {
       <div className="register-card">
         <h2>Create Your Account</h2>
 
-        {successMessage && (
-          <p className="success-message">{successMessage}</p>
-        )}
+        {/* Conditional rendering of success message */}
+        {successMessage && <p className="success-message">{successMessage}</p>}
 
         <form onSubmit={handleSubmit} className="register-form">
-          <input
-            type="text"
+          {/* Reusable InputField used for all fields */}
+          <InputField
+            label="Full Name"
             name="name"
-            placeholder="Full Name"
+            type="text"
             value={formData.name}
             onChange={handleChange}
-            required
           />
-          <input
-            type="email"
+          <InputField
+            label="Email Address"
             name="email"
-            placeholder="Email Address"
+            type="email"
             value={formData.email}
             onChange={handleChange}
-            required
           />
-          <input
-            type="text"
+          <InputField
+            label="University Name"
             name="university"
-            placeholder="University Name"
+            type="text"
             value={formData.university}
             onChange={handleChange}
-            required
           />
-          <input
-            type="password"
+          <InputField
+            label="Password"
             name="password"
-            placeholder="Password"
+            type="password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
-          <button type="submit">Register</button>
+
+          {/* Show error below password if invalid */}
+          {passwordError && <p className="error">{passwordError}</p>}
+
+          <button type="submit" disabled={passwordError !== ""}>
+            Register
+          </button>
         </form>
       </div>
     </div>
