@@ -1,4 +1,3 @@
-
 import Content from "../components/Content";
 import AboutImg from "../assets/img_5.png";
 import "./UniversityData.css";

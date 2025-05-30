@@ -1,9 +1,8 @@
-/* Reset and global styles */
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-x: hidden;
   width: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

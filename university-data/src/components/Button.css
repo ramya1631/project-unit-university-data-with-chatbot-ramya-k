@@ -1,25 +1,15 @@
-.custom-btn {
+.btn {
+  padding: 0.6rem 1.2rem;
   background-color: navy;
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* helps it stand out on images */
-    font-weight: bold;
-    display: inline-block;
-
-}
-/* Optional: make text more readable on all backgrounds */
-.custom-btn:focus,
-.custom-btn:active {
-  outline: 2px solid orange;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.custom-btn:hover {
+.btn:hover {
   background-color: orange;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: navy;
 }

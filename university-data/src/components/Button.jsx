@@ -1,10 +1,12 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Button.css';
 
-function Button({ text, onClick, type = "button", className = "" }) {
+function Button({ className, to, children }) {
   return (
-    <button type={type} onClick={onClick} className={`custom-btn ${className}`}>
-      {text}
-    </button>
+    <Link to={to} className={className}>
+      {children}
+    </Link>
   );
 }
 
