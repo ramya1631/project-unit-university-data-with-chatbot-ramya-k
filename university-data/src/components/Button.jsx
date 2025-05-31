@@ -2,12 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Button.css';
 
-function Button({ className, to, children }) {
+// Button component definition
+function Button(props) {
   return (
-    <Link to={to} className={className}>
-      {children}
+    // Link is used instead of <a> for client-side routing
+    <Link to={props.to} className={props.className}>
+      {props.children}
     </Link>
   );
 }
 
+// Export the Button so it can be used in other parts of the app
 export default Button;

@@ -1,12 +1,11 @@
-/* ==== Container Styling ==== */
 .register-page {
-  padding-top: 120px; /* Leave space for fixed navbar */
+  padding-top: 120px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
 
-  background-image: url("../assets/pen.png"); /* Background for visual context */
+  background-image: url("../assets/pen.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,9 +13,8 @@
   font-family: "Segoe UI",Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ==== Card Styling ==== */
 .register-card {
-  background: rgba(255, 255, 255, 0.9); /* Transparent white for readability */
+  background: rgba(255, 255, 255, 0.9);
   padding: 2rem;
   width: 100%;
   max-width: 400px;
@@ -27,16 +25,14 @@
 .register-card h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #003366; /* Deep blue for trust and contrast */
+  color: #003366;
 }
 
-/* ==== Form Layout ==== */
 .register-form {
   display: flex;
   flex-direction: column;
 }
 
-/* ==== Input Styling ==== */
 .register-form input {
   margin-bottom: 1rem;
   padding: 0.75rem 1rem;
@@ -48,10 +44,9 @@
 
 .register-form input:focus {
   outline: none;
-  border-color: #0077cc; /* Blue highlight when active */
+  border-color: #0077cc;
 }
 
-/* ==== Button Styling ==== */
 .register-form button {
   padding: 0.75rem;
   background-color: #0077cc;
@@ -66,8 +61,6 @@
 .register-form button:hover {
   background-color: #005fa3;
 }
-
-/* ==== Success Message Styling ==== */
 .success-message {
   color: green;
   margin-bottom: 1rem;
@@ -76,7 +69,6 @@
   text-align: center;
 }
 
-/* ==== Error Message Styling (Optional - used in JSX) ==== */
 .error {
   color: red;
   font-size: 0.9rem;
@@ -85,7 +77,6 @@
   text-align: left;
 }
 
-/* ==== Responsive Design ==== */
 @media (max-width: 480px) {
   .register-card {
     padding: 1.5rem;

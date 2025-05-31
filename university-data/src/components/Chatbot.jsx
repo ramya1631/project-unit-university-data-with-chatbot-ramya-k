@@ -1,104 +1,89 @@
 import React, { useState, useRef, useEffect } from 'react';
-import chatbotData from './bot.json'; // Import predefined Q&A responses
-import ChatImg from "../assets/chatbot.gif"; // Chatbot icon for header
-import './Chatbot.css'; // Import CSS for styling
+import chatbotData from './bot.json';
+import ChatImg from "../assets/chatbot.gif";
+import './Chatbot.css';
 
-// Function to fetch a response from the bot based on user input
-function getBotResponse(message) {
-  const key = message.toLowerCase().trim(); // Normalize the input
-  return chatbotData[key] || "Sorry, I didn't understand that."; // Default fallback response
-}
+    // Get bot reply from JSON
+    function getBotResponse(message) {
+    const key = message.toLowerCase().trim();
+    return chatbotData[key] || "Sorry, I didn't understand that.";
+  }
 
-function Chatbot() {
-  // State to hold all messages in the chat (both user and bot)
-  const [messages, setMessages] = useState([]);
+  function Chatbot() {
+      // State to track chat messages
+    const [messages, setMessages] = useState([]);
+      // State to track user input
+      const [input, setInput] = useState("");
+       // State to track whether chatbot is minimized or not
+       const [minimized, setMinimized] = useState(true); // start minimized
 
-  // State to hold the current input typed by the user
-  const [input, setInput] = useState("");
+       // Refs for scrolling and focusing input
+         const messagesEndRef = useRef(null);
+          const inputRef = useRef(null);
+    // Scroll to bottom when messages update
+      useEffect(() => {
+       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, [messages]);
+    // Focus input field when chatbot is opened
+       useEffect(() => {
+         if (!minimized) {
+           inputRef.current?.focus();
+      }
+       }, [minimized]);
 
-  // State to control if the chatbot window is minimized or not
-  const [minimized, setMinimized] = useState(false);
+     // Handle send button click or Enter key press
+       const handleSend = () => {
+         if (!input.trim()) return;// Do nothing if input is empty
 
-  // Reference to scroll the chatbox to the latest message
-  const messagesEndRef = useRef(null);
+           const userMsg = { from: "user", text: input };//user msg
+             const botMsg = { from: "bot", text: getBotResponse(input) };//bot reply
+             // Add both messages to message list
+               setMessages(prev => [...prev, userMsg, botMsg]);
+                 setInput("");
+                 };
 
-  // Reference to focus the input field when chatbot is open
-  const inputRef = useRef(null);
+                 return (
+                        // Wrapper class changes depending on minimized state
+                  <div className={minimized ? "chatbot-wrapper chatbot-minimized" : "chatbot-wrapper"}>
 
-  // Scroll to bottom automatically when new messages are added
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+         {/* Header icon (always visible) */}
+         <div
+           className="chatbot-header"
+             onClick={() => setMinimized(!minimized)}
+               title={minimized ? "Open Chatbot" : "Minimize Chatbot"}
+                  >
+            <img src={ChatImg} alt="Chatbot" />
+              </div>
 
-  // Focus on the input field when chatbot is maximized
-  useEffect(() => {
-    if (!minimized) {
-      inputRef.current?.focus();
-    }
-  }, [minimized]);
-
-  // Function to send the user message and get bot response
-  const handleSend = () => {
-    if (!input.trim()) return; // If input is empty, do nothing
-
-    // Create a user message object
-    const userMsg = { from: "user", text: input };
-
-    // Get the bot's response from the JSON
-    const botMsg = { from: "bot", text: getBotResponse(input) };
-
-    // Add both messages to the chat
-    setMessages(prev => [...prev, userMsg, botMsg]);
-
-    // Clear the input field
-    setInput("");
-  };
-
-  return (
-    <div className={minimized ? "chatbot-wrapper chatbot-minimized" : "chatbot-wrapper"}>
-
-      {/* Header with chatbot icon - toggles minimize/maximize */}
-      <div
-        className="chatbot-header"
-        onClick={() => setMinimized(!minimized)}
-        title={minimized ? "Open Chatbot" : "Minimize Chatbot"}
-      >
-        <img src={ChatImg} alt="Chatbot" />
-      </div>
-
-      {/* Chatbox area only shows when not minimized */}
+       {/* Chat content only visible if not minimized */}
       {!minimized && (
         <>
-          {/* Chat log area */}
-          <div
-            className="chatbot-chatbox"
-            role="log"
-            aria-live="polite"
-            aria-relevant="additions"
+          {/* Close (minimize) button */}
+          <button
+            className="chatbot-close-button"
+            onClick={() => setMinimized(true)} // just minimize, don't hide
+            title="Minimize Chatbot"
           >
-            {/* Greeting if no messages yet */}
-            {messages.length === 0 && (
-              <p className="chatbot-empty">Say hi! 👋</p>
-            )}
+            ×
+          </button>
 
-            {/* Render each message */}
+            {/* Message display area */}
+          <div className="chatbot-chatbox" role="log" aria-live="polite">
+            {messages.length === 0 && <p className="chatbot-empty">Say hi! 👋</p>}
             {messages.map((msg, i) => (
               <div key={i} className={`chatbot-message ${msg.from}`}>
                 <div
                   className={`chatbot-bubble ${msg.from}`}
                   dangerouslySetInnerHTML={msg.from === "bot" ? { __html: msg.text } : undefined}
                 >
-                  {/* Only show user message if not bot */}
                   {msg.from === "user" ? msg.text : null}
                 </div>
               </div>
             ))}
-
-            {/* Scroll anchor to bottom */}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input and send button */}
+          {/* Input area for typing messages*/}
           <div className="chatbot-input-area">
             <input
               ref={inputRef}
@@ -108,7 +93,6 @@ function Chatbot() {
               onKeyDown={e => e.key === "Enter" && handleSend()}
               placeholder="Type a message..."
               className="chatbot-input"
-              aria-label="Message input"
             />
             <button
               onClick={handleSend}
